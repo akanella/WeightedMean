@@ -15,5 +15,5 @@ var german = {
     "Calculate": "Berechen",
     "Reset": "Zurücksetzen",
     "Result": "Ergebnis",
-    "Empty field or zero value for uncertianty is not allowed"; "Leeres Feld oder Nullwert für Unsicherheit ist nicht zulässig",
+    "Empty field or zero value for uncertianty is not allowed": "Leeres Feld oder Nullwert für Unsicherheit ist nicht zulässig",
 }
