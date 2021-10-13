@@ -9,10 +9,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/translation.js"></script>
     <script src="js/chart.min.js"></script>
-    <link rel="icon" href="vial.png" sizes="16x16" type="image/png">
 </head>
-
-
 
 <style>
 table {
@@ -31,8 +28,8 @@ td, th {
 <body style="padding-bottom: 90px;">
     <div class="row col-12" style="margin-bottom:30px">
         <div class="col-10">
-            <b data-translate="Liquid Scintillation Activity Calculator">Liquid Scintillation Activity Calculator</b>
-            <span>v. 2.0-i</span>
+            <b data-translate="Weighted Mean Calculator">Weighted Mean Calculator</b>
+            <span>v. 1.0</span>
         </div>
         <div class="col-2">
             <span style="cursor:pointer" class="languages" data-lang="eng"> en </span>
@@ -52,8 +49,8 @@ td, th {
 						id="removesample-btn">-</button>
 				</div>
 				<div class="form-group col">
-					<label for="value">Value</label>
-					<input type="number" id="value" name="value[]" class="form-control required">
+					<label for="Values" data-translate="Values">Values</label>
+					<input type="number" id="val" name="val[]" class="form-control required">
 				</div>
 			</div>
 			<div class="col row">
@@ -61,8 +58,8 @@ td, th {
 					<h5>&nbsp;</h5>
 				</div>
 				<div class="form-group col">
-					<label for="Background">Background</label>
-					<input type="number" id="background" name="background[]" class="form-control required">
+					<label for="Uncertainties" data-translate="Uncertainties">Uncertainties</label>
+					<input type="number" id="unc" name="unc[]" class="form-control required">
 				</div>
 			</div>
 		</div>
@@ -75,7 +72,8 @@ td, th {
 				</div>
 			</div>
 			<div class="col-12 form-group" id="result-tab" style="display:none">
-				<label for="result" data-translate="Activity:">Activity:</label>
+                <br>
+				<label for="result" data-translate="Result:">Result:</label>
 				<div id="result" class="alert alert-success"></div>
 			</div>
 		</div>
@@ -86,9 +84,7 @@ td, th {
         <div class="col-10">
             <small class="form-text text-muted"> &copy; 2021. This work is licensed under a <a rel="license"
                     href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 license</a>. <br><span>Created by
-                    G. Skarakis and A. Kanellakopoulos</span><br>
-                Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a
-                    href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></small>
+                    G. Skarakis and A. Kanellakopoulos</span>
         </div>
         <div class="col-2">
             <a rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><img
@@ -143,16 +139,16 @@ td, th {
             })
 
             $('#addsample-btn').on('click', function () {
-                $("input[name='value[]']").last().after('<input type="number" name="value[]" class="form-control required">');
-                $("input[name='background[]']").last().after('<input type="number" name="background[]" class="form-control required">');
+                $("input[name='val[]']").last().after('<input type="number" name="val[]" class="form-control required">');
+                $("input[name='unc[]']").last().after('<input type="number" name="unc[]" class="form-control required">');
             })
 
             $('#removesample-btn').on('click', function () {
-                if ($("input[name='value[]']").length == 1) {
+                if ($("input[name='val[]']").length == 1) {
                     return false;
                 }
-                $("input[name='value[]']").last().remove();
-                $("input[name='background[]']").last().remove();
+                $("input[name='val[]']").last().remove();
+                $("input[name='unc[]']").last().remove();
             })
 
             $('#calculate').on('click', async function (event, arg1) {
@@ -160,16 +156,39 @@ td, th {
                 var result = null;
 
 				//Arrays με τις τιμές του κάθε κουτιού
-				var values = $("input[name='value[]']").map(function () { return parseFloat($(this).val()); }).get();
-				var backgrounds = $("input[name='background[]']").map(function () { return parseFloat($(this).val()); }).get();
+				var valAr = $("input[name='val[]']").map(function () { return parseFloat($(this).val()); }).get();
+				var uncAr = $("input[name='unc[]']").map(function () { return parseFloat($(this).val()); }).get();
 
-				console.log(values);
-				console.log(backgrounds);
+                var numeratorMean = 0.
+                var denominatorMean = 0.
+                var numeratorSigmaScat = 0.
 
-				result = 123 + ' &pm; ' + 678;
+				console.log(valAr);
+				console.log(uncAr);
 
-			
-			$('#result').html('a = ' + result + ' kati');
+                for (var i in valAr) {
+                    numeratorMean += valAr[i]/Math.pow(uncAr[i],2)
+                    denominatorMean += 1/Math.pow(uncAr[i],2)
+                }
+
+                var meanWeight = numeratorMean/denominatorMean;
+                var sigmaStatSq = 1/denominatorMean;
+
+                for (var i in valAr) {
+                    numeratorSigmaScat += Math.pow((valAr[i]-meanWeight)/uncAr[i],2)
+                }
+
+                var sigmaScatSq = numeratorSigmaScat/((valAr.length-1)*denominatorMean);
+
+                if (sigmaStatSq>sigmaScatSq){
+                    var meanWeightSigma = Math.pow(sigmaStatSq,0.5)
+                } else {
+                    var meanWeightSigma = Math.pow(sigmaScatSq,0.5)
+                }
+
+				result = meanWeight + ' &pm; ' + meanWeightSigma;
+
+			$('#result').html('&lt;x&gt; = ' + result);
 			$('#result-tab').show();
 
             })
