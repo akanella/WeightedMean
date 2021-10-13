@@ -167,6 +167,10 @@ td, th {
 				console.log(uncAr);
 
                 for (var i in valAr) {
+					if(valAr[i] && !uncAr[i]){
+						alert('vale timi');
+					}
+				
                     numeratorMean += valAr[i]/Math.pow(uncAr[i],2)
                     denominatorMean += 1/Math.pow(uncAr[i],2)
                 }
