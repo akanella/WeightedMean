@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<head>
+    <title data-translate="Weighted Mean">Weighted Mean</title>
+    <script src="js/jquery.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/translation.js"></script>
+    <script src="js/chart.min.js"></script>
+    <link rel="icon" href="vial.png" sizes="16x16" type="image/png">
+</head>
+
+
+
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+</style>
+
+<body style="padding-bottom: 90px;">
+    <div class="row col-12" style="margin-bottom:30px">
+        <div class="col-10">
+            <b data-translate="Liquid Scintillation Activity Calculator">Liquid Scintillation Activity Calculator</b>
+            <span>v. 2.0-i</span>
+        </div>
+        <div class="col-2">
+            <span style="cursor:pointer" class="languages" data-lang="eng"> en </span>
+            <span> | </span>
+            <span style="cursor:pointer" class="languages" data-lang="fr"> fr </span>
+            <span> | </span>
+            <span style="cursor:pointer" class="languages" data-lang="de"> de </span>
+        </div>
+    </div>
+    <form id="Weighted-Mean">
+        <div class="row col-8 offset-2">
+			<div class="col row">
+				<div class="col-12 ">
+					<button type="button" class="btn btn-success btn-circle" style="border-radius:40%"
+						id="addsample-btn">+</button>
+					<button type="button" class="btn btn-danger btn-circle" style="border-radius:40%"
+						id="removesample-btn">-</button>
+				</div>
+				<div class="form-group col">
+					<label for="value">Value</label>
+					<input type="number" id="value" name="value[]" class="form-control required">
+				</div>
+			</div>
+			<div class="col row">
+				<div class="col-12 ">
+					<h5>&nbsp;</h5>
+				</div>
+				<div class="form-group col">
+					<label for="Background">Background</label>
+					<input type="number" id="background" name="background[]" class="form-control required">
+				</div>
+			</div>
+		</div>
+
+		<div class="row col-8 offset-2" id="calculate-buttons">
+			<div class="col-12">
+				<div>
+					<button type="button" id="calculate" class="btn btn-success"
+						data-translate="Calculate">Calculate</button>
+				</div>
+			</div>
+			<div class="col-12 form-group" id="result-tab" style="display:none">
+				<label for="result" data-translate="Activity:">Activity:</label>
+				<div id="result" class="alert alert-success"></div>
+			</div>
+		</div>
+    </form>
+
+    <div class="row col-12"
+        style="position:fixed; bottom:0px; text-align: left; width:100%; background:white; height: 70px">
+        <div class="col-10">
+            <small class="form-text text-muted"> &copy; 2021. This work is licensed under a <a rel="license"
+                    href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 license</a>. <br><span>Created by
+                    G. Skarakis and A. Kanellakopoulos</span><br>
+                Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a
+                    href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></small>
+        </div>
+        <div class="col-2">
+            <a rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><img
+                    alt="Creative Commons Public Domain Dedication" style="border-width:0"
+                    src="https://licensebuttons.net/l/zero/1.0/88x31.png" /></a>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var lang = 'eng'; var myChart = null;
+			
+            function t(value) {
+                switch (lang) {
+                    case 'fr':
+                        if (french[value]) {
+                            return french[value];
+                        }
+                    case 'de':
+                        if (german[value]) {
+                            return german[value];
+                        }
+                    default:
+                        return value;
+                }
+            }
+
+            function translate() {
+                $('*[data-translate]').each(function () {
+                    let translation = t($(this).data('translate'));
+                    if ($(this).is("input")) {
+                        $(this).val(translation);
+                    } else {
+                        $(this).html(translation);
+                    }
+                })
+            }
+
+            if (typeof (Storage) !== "undefined") {
+                let storedlang = localStorage.getItem("language");
+                if (storedlang) {
+                    lang = storedlang;
+                    translate();
+                }
+            }
+
+            $('.languages').on('click', function () {
+                lang = $(this).data('lang');
+                translate();
+                if (typeof (Storage) !== "undefined") {
+                    localStorage.setItem("language", lang);
+                }
+            })
+
+            $('#addsample-btn').on('click', function () {
+                $("input[name='value[]']").last().after('<input type="number" name="value[]" class="form-control required">');
+                $("input[name='background[]']").last().after('<input type="number" name="background[]" class="form-control required">');
+            })
+
+            $('#removesample-btn').on('click', function () {
+                if ($("input[name='value[]']").length == 1) {
+                    return false;
+                }
+                $("input[name='value[]']").last().remove();
+                $("input[name='background[]']").last().remove();
+            })
+
+            $('#calculate').on('click', async function (event, arg1) {
+
+                var result = null;
+
+				//Arrays με τις τιμές του κάθε κουτιού
+				var values = $("input[name='value[]']").map(function () { return parseFloat($(this).val()); }).get();
+				var backgrounds = $("input[name='background[]']").map(function () { return parseFloat($(this).val()); }).get();
+
+				console.log(values);
+				console.log(backgrounds);
+
+				result = 123 + ' &pm; ' + 678;
+
+			
+			$('#result').html('a = ' + result + ' kati');
+			$('#result-tab').show();
+
+            })
+        })
+    </script>
+</body>
+
+</html>
