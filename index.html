@@ -154,10 +154,17 @@ td, th {
             $('#calculate').on('click', async function (event, arg1) {
 
                 var result = null;
+				var invalidvalues = [];
 
 				//Arrays με τις τιμές του κάθε κουτιού
-				var valAr = $("input[name='val[]']").map(function () { return parseFloat($(this).val()); }).get();
-				var uncAr = $("input[name='unc[]']").map(function () { return parseFloat($(this).val()); }).get();
+				var valAr = $("input[name='val[]']").map(function () { return parseFloat($(this).val()); }).get().filter((value,index) => {
+					if(!value && value!=0){
+						invalidvalues.push(index);
+						return false;
+					}
+					return true;
+				});
+				var uncAr = $("input[name='unc[]']").map(function () { return parseFloat($(this).val()); }).get().filter((unc,index) => !invalidvalues.includes(index));
 
                 var numeratorMean = 0.
                 var denominatorMean = 0.
@@ -167,8 +174,9 @@ td, th {
 				console.log(uncAr);
 
                 for (var i in valAr) {
-					if(valAr[i] && !uncAr[i]){
+					if(!uncAr[i]){
 						alert('vale timi');
+						return false;
 					}
 				
                     numeratorMean += valAr[i]/Math.pow(uncAr[i],2)
