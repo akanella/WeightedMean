@@ -3,13 +3,15 @@ var french = {
     "Values": "Valeurs",
     "Uncertainties": "Incertitudes",
     "Calculate": "Calculer",
+    "Reset": "Réinitialiser",
     "Result": "Résultat",
 };
 
 var german = {
     "Weighted Mean Calculator": "Rechener des gewichtetes Mittel",
     "Values": "Werte",
-    "Uncertainties": "Fehler",
+    "Uncertainties": "Unsicherheiten",
     "Calculate": "Berechen",
+    "Reset": "Zurücksetzen",
     "Result": "Ergebnis",
 }
