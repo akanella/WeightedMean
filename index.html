@@ -163,7 +163,6 @@ td, th {
                 var result = null;
 				var invalidvalues = [];
 
-				//Arrays με τις τιμές του κάθε κουτιού
 				var valAr = $("input[name='val[]']").map(function () { return parseFloat($(this).val()); }).get().filter((value,index) => {
 					if(!value && value!=0){
 						invalidvalues.push(index);
