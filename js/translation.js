@@ -6,6 +6,7 @@ var french = {
     "Reset": "Réinitialiser",
     "Result": "Résultat",
     "Empty field or zero value for uncertianty is not allowed": "Un champ vide ou une valeur zéro pour l'incertitude n'est pas autorisé",
+    "back to the app": "retour à l'appli",
 };
 
 var german = {
@@ -16,4 +17,5 @@ var german = {
     "Reset": "Zurücksetzen",
     "Result": "Ergebnis",
     "Empty field or zero value for uncertianty is not allowed": "Leeres Feld oder Nullwert für Unsicherheit ist nicht zulässig",
+    "back to the app": "zurück zur App",
 }
