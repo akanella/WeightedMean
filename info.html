@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<head>
+    <title data-translate="Weighted Mean">Weighted Mean</title>
+    <script src="js/jquery.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/translation.js"></script>
+    <script src="js/chart.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+</style>
+
+<body style="padding-bottom: 90px;">
+    <div class="row col-12" style="margin-bottom:30px">
+        <div class="col-10">
+            <b data-translate="Weighted Mean Calculator">Weighted Mean Calculator</b>
+            <span>v. 1.0</span>
+            <span> | </span>
+            <span><a href="info.html">info</a></span>
+        </div>
+        <div class="col-2">
+            <span style="cursor:pointer" class="languages" data-lang="eng"> en </span>
+            <span> | </span>
+            <span style="cursor:pointer" class="languages" data-lang="fr"> fr </span>
+            <span> | </span>
+            <span style="cursor:pointer" class="languages" data-lang="de"> de </span>
+        </div>
+    </div>
+
+    <div class="bodywrapper">
+        <span>axne</span><br>
+
+        <span>
+        When we have multiple measurments of the same quantity, we usually use the arithemtic mean in order to find the final value. <br><br>
+
+        But if these measurements come with their own uncertainties, then the arithmetic mean fails to take this extra informaiton into accout. <br><br>
+
+        In order to calculate the mean value of such a dataset, we use the weighted arithmetic mean. The weighted arithmetic mean is similar to an ordinary arithmetic mean (the most common type of average), except that instead of each of the data points contributing equally to the final average, some data points contribute more than others.
+        </span>
+
+        <span>
+            The weighted arithemtic mean is defined as:
+            $$ \langle x \rangle _{w}  = \frac{ \sum_{i=1}^{N} \frac{x_i}{\sigma_i^2} }{ \sum_{i=1}^{N} \frac{1}{\sigma_i^2} } $$
+        </span>
+
+        <span>
+            And thus, the standard statistical error is defined as:
+            $$ \sigma_{x, stat}^2 = \frac{1}{\sum_{i=1}^{N} \frac{1}{\sigma_i^2}} $$
+        </span>
+
+        <span>
+            $$ \sigma_{x, scatter}^2 = \frac{1}{\left( N-1 \right)} \frac{ \sum_{i=1}^{N} \left( \frac{x_i - \langle x \rangle _{w} }{ \sigma_i } \right) ^2 }{ \sum_{i=1}^{N} \frac{1}{\sigma_i^2}  } $$
+        </span>
+    </div>
+
+    <div class="row col-12"
+        style="position:fixed; bottom:0px; text-align: left; width:100%; background:white; height: 50px">
+        <div class="col-10">
+            <small class="form-text text-muted"> &copy; 2021. This work is licensed under a <a rel="license"
+                    href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 license</a>. <br><span>Created by
+                    G. Skarakis and A. Kanellakopoulos</span>
+        </div>
+        <div class="col-2">
+            <a rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><img
+                    alt="Creative Commons Public Domain Dedication" style="border-width:0"
+                    src="https://licensebuttons.net/l/zero/1.0/88x31.png" /></a>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var lang = 'eng'; var myChart = null;
+			
+            function t(value) {
+                switch (lang) {
+                    case 'fr':
+                        if (french[value]) {
+                            return french[value];
+                        }
+                    case 'de':
+                        if (german[value]) {
+                            return german[value];
+                        }
+                    default:
+                        return value;
+                }
+            }
+
+            function translate() {
+                $('*[data-translate]').each(function () {
+                    let translation = t($(this).data('translate'));
+                    if ($(this).is("input")) {
+                        $(this).val(translation);
+                    } else {
+                        $(this).html(translation);
+                    }
+                });
+				
+				$('*[data-linktranslate]').each(function () {
+                    let translation = t($(this).data('linktranslate'));
+					$(this).attr("href", translation)
+                })
+            }
+
+            if (typeof (Storage) !== "undefined") {
+                let storedlang = localStorage.getItem("language");
+                if (storedlang) {
+                    lang = storedlang;
+                    translate();
+                }
+            }
+
+            $('.languages').on('click', function () {
+                lang = $(this).data('lang');
+                translate();
+                if (typeof (Storage) !== "undefined") {
+                    localStorage.setItem("language", lang);
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
