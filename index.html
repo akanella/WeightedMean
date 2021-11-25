@@ -125,11 +125,8 @@ td, th {
                         $(this).html(translation);
                     }
                 });
-				
-				$('*[data-linktranslate]').each(function () {
-                    let translation = t($(this).data('linktranslate'));
-					$(this).attr("href", translation)
-                })
+				$('.translatable').hide();
+				$('.translatable translate-'+lang).show();
             }
 
             if (typeof (Storage) !== "undefined") {
