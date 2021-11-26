@@ -55,14 +55,11 @@ td, th {
             $$ \langle x \rangle _{w} = \frac{ \sum_{i=1}^{N} w_i x_i }{ \sum_{i=1}^{N} w_i } $$
         </span>
 
-        <span>
+        <span class="translatable translate-eng">
             Note that when all the weigths are identical, the formula is reduced into a "normal" arithmetic mean.<br><br>
-        </span>
 
-        <span>
             A commonly used set of weights are inverse variances \( w_i = 1/\sigma_i \). This choice guarantees that the smaller the variance (the more precise the mesurement), the higher the importance of the data point is.
         </span>
-        
 
         <!-- <span class="translatable translate-eng">Full explanation coming soon.<br><br></span> -->
         <span class="translatable translate-fr">Pas encore de support en français.<br><br></span>
@@ -82,7 +79,7 @@ td, th {
             $$ \sigma_{x, stat}^2 = \frac{1}{\sum_{i=1}^{N} \frac{1}{\sigma_i^2}} $$
         </span>
 
-        <span>
+        <span class="translatable translate-eng">
             Weighted means are typically used to find the weighted mean of experimental data where typical experiemntal errors may be underestimted or ommited in calculating the variance of each data point. To negate this fact, the variance needs to be corrected by:
         </span>
         <!-- <span class="translatable translate-eng">Definition of the sample-scatter variance of the weighted mean:</span> -->
@@ -96,11 +93,9 @@ td, th {
         <span class="translatable translate-de">Die wahre varianz ist immer die größte der beiden:</span>
         <span>$$ \sigma_x^2 = max \left\{ \sigma_{x, stat}^2, \sigma_{x, scatter}^2 \right\} $$</span>
 
-        <span>
+        <span class="translatable translate-eng">
             Note that correlations between the data points are not taking into account from this formalism. A detailed overview of uncertainty propagation including correlations can be found <a href="https://en.wikipedia.org/wiki/Propagation_of_uncertainty#Example_formulae">here</a>. <br><br>
-        </span>
 
-        <span>
             More information about the weighted arithemtic mean formalism can be found <a href="https://en.wikipedia.org/wiki/Weighted_arithmetic_mean">here</a>.
         </span>
     </div>
