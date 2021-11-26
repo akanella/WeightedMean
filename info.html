@@ -45,42 +45,64 @@ td, th {
     </div>
 
     <div class="bodywrapper container">
-<!--         <span class="translatable translate-eng">
-            When we have multiple measurments of the same quantity, we usually use the arithemtic mean in order to find the final value. <br><br>
+        <span class="translatable translate-eng">
+            When we have multiple measurments of the same quantity, we usually use the arithemtic mean in order to find its true value. We can also estimate the uncertainty of our estimation by using, for example, a standard deviation of all the measurements. However, the arithmetic mean does not take into accout differences in precision of each measurement which are express by the provided uncertainties.<br><br>
 
-            But if these measurements come with their own uncertainties, then the arithmetic mean fails to take this extra informaiton into accout. <br><br>
+            In order to calculate the mean value of such a dataset \( \langle x \rangle _{w} \), we use the weighted arithmetic mean. It is similar to an ordinary arithmetic mean (the most common type of average), but each data point is multiplied by a weight \( w_i \) with some data points contribute more than others. Another difference is in a denominator - instead of a number of measurements, a sum of weights is used.
+        </span>
 
-            In order to calculate the mean value of such a dataset, we use the weighted arithmetic mean. The weighted arithmetic mean is similar to an ordinary arithmetic mean (the most common type of average), except that instead of each of the data points contributing equally to the final average, some data points contribute more than others.
-        </span> -->
+        <span>
+            $$ \langle x \rangle _{w} = \frac{ \sum_{i=1}^{N} w_i x_i }{ \sum_{i=1}^{N} w_i } $$
+        </span>
 
-        <span class="translatable translate-eng">Full explanation coming soon.<br><br></span>
+        <span>
+            Note that when all the weigths are identical, the formula is reduced into a "normal" arithmetic mean.<br><br>
+        </span>
+
+        <span>
+            A commonly used set of weights are inverse variances \( w_i = 1/\sigma_i \). This choice guarantees that the smaller the variance (the more precise the mesurement), the higher the importance of the data point is.
+        </span>
+        
+
+        <!-- <span class="translatable translate-eng">Full explanation coming soon.<br><br></span> -->
         <span class="translatable translate-fr">Pas encore de support en français.<br><br></span>
         <span class="translatable translate-de">Noch kein Support auf Deutsch.<br><br></span>
 
-        <span class="translatable translate-eng">Defintion of the weighted arithemtic mean:</span>
+        <span class="translatable translate-eng">Thus, the weighted arithmetic mean becomes:</span>
         <span class="translatable translate-fr">La définition de la moyenne arithmétique pondérée:</span>
         <span class="translatable translate-de">Die Definition des gewichtetes arithmetisches Mittel:</span>
         <span>
-            $$ \langle x \rangle _{w}  = \frac{ \sum_{i=1}^{N} \frac{x_i}{\sigma_i^2} }{ \sum_{i=1}^{N} \frac{1}{\sigma_i^2} } $$
+            $$ \langle x \rangle _{w} = \frac{ \sum_{i=1}^{N} \frac{x_i}{\sigma_i^2} }{ \sum_{i=1}^{N} \frac{1}{\sigma_i^2} } $$
         </span>
 
-        <span class="translatable translate-eng">Definition of the statistical variance of the weighted mean:</span>
+        <span class="translatable translate-eng">and the statistical variance of the weighted mean is:</span>
         <span class="translatable translate-fr">La définition de la variance statistique de la moyenne pondérée:</span>
         <span class="translatable translate-de">Die Definition der statistischen Varianz des gewichteten Mittels:</span>
         <span>
             $$ \sigma_{x, stat}^2 = \frac{1}{\sum_{i=1}^{N} \frac{1}{\sigma_i^2}} $$
         </span>
 
-        <span class="translatable translate-eng">Definition of the sample-scatter variance of the weighted mean:</span>
+        <span>
+            Weighted means are typically used to find the weighted mean of experimental data where typical experiemntal errors may be underestimted or ommited in calculating the variance of each data point. To negate this fact, the variance needs to be corrected by:
+        </span>
+        <!-- <span class="translatable translate-eng">Definition of the sample-scatter variance of the weighted mean:</span> -->
         <span class="translatable translate-fr">La définition de la variance de dispersion d'échantillon de la moyenne pondérée:</span>
         <span class="translatable translate-de">Definition der Stichprobenstreuvarianz des gewichteten Mittels:</span>
         <span>
             $$ \sigma_{x, scatter}^2 = \frac{1}{\left( N-1 \right)} \frac{ \sum_{i=1}^{N} \left( \frac{x_i - \langle x \rangle _{w} }{ \sigma_i } \right) ^2 }{ \sum_{i=1}^{N} \frac{1}{\sigma_i^2}  } $$
         </span>
-        <span class="translatable translate-eng">The total variance is always the biggest of the two:</span>
-        <span class="translatable translate-fr">La variance totale est toujours la plus grande des deux:</span>
-        <span class="translatable translate-de">Die Gesamtvarianz ist immer die größte der beiden:</span>
+        <span class="translatable translate-eng">The true variance is always the biggest of the two:</span>
+        <span class="translatable translate-fr">La variance vrai est toujours la plus grande des deux:</span>
+        <span class="translatable translate-de">Die wahre varianz ist immer die größte der beiden:</span>
         <span>$$ \sigma_x^2 = max \left\{ \sigma_{x, stat}^2, \sigma_{x, scatter}^2 \right\} $$</span>
+
+        <span>
+            Note that correlations between the data points are not taking into account from this formalism. A detailed overview of uncertainty propagation including correlations can be found <a href="https://en.wikipedia.org/wiki/Propagation_of_uncertainty#Example_formulae">here</a>. <br><br>
+        </span>
+
+        <span>
+            More information about the weighted arithemtic mean formalism can be found <a href="https://en.wikipedia.org/wiki/Weighted_arithmetic_mean">here</a>.
+        </span>
     </div>
 
     <div class="row col-12"
