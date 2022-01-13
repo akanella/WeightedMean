@@ -58,7 +58,7 @@ td, th {
         <span class="translatable translate-eng">
             Note that when all the weigths are identical, the formula is reduced into a "normal" arithmetic mean.<br><br>
 
-            A commonly used set of weights are inverse variances \( w_i = 1/\sigma_i \). This choice guarantees that the smaller the variance (the more precise the mesurement), the higher the importance of the data point is.
+            A commonly used set of weights are inverse variances \( w_i = 1/\sigma_i^2 \). This choice guarantees that the smaller the variance (the more precise the mesurement), the higher the importance of the data point is.
         </span>
         <span class="translatable translate-fr">Pas encore de support en français.<br><br></span>
         <span class="translatable translate-de">Noch kein Support auf Deutsch.<br><br></span>
@@ -78,13 +78,13 @@ td, th {
         </span>
 
         <span class="translatable translate-eng">
-            Weighted means are typically used to find the weighted mean of experimental data where typical experiemntal errors may be underestimted or ommited in calculating the variance of each data point. To negate this fact, the variance needs to be corrected by:
+            Weighted means are typically used to find the weighted mean of experimental data where typical experiemntal errors may be underestimted or ommited in calculating the variance of each data point. To accomodate this fact, the variance needs to be corrected by the reduced \( \chi^2 \) of the mean :
         </span>
         <!-- <span class="translatable translate-eng">Definition of the sample-scatter variance of the weighted mean:</span> -->
         <span class="translatable translate-fr">La définition de la variance de dispersion d'échantillon de la moyenne pondérée:</span>
         <span class="translatable translate-de">Definition der Stichprobenstreuvarianz des gewichteten Mittels:</span>
         <span>
-            $$ \sigma_{x, scatter}^2 = \frac{1}{\left( N-1 \right)} \frac{ \sum_{i=1}^{N} \left( \frac{x_i - \langle x \rangle _{w} }{ \sigma_i } \right) ^2 }{ \sum_{i=1}^{N} \frac{1}{\sigma_i^2}  } $$
+            $$ \sigma_{x, scatter}^2 = \sigma_{x, stat}^2 \; \chi_{red}^2 = \frac{1}{\left( N-1 \right)} \frac{ \sum_{i=1}^{N} \left( \frac{x_i - \langle x \rangle _{w} }{ \sigma_i } \right) ^2 }{ \sum_{i=1}^{N} \frac{1}{\sigma_i^2}  } $$
         </span>
         <span class="translatable translate-eng">The true variance is always the biggest of the two:</span>
         <span class="translatable translate-fr">La variance vrai est toujours la plus grande des deux:</span>
@@ -94,7 +94,13 @@ td, th {
         <span class="translatable translate-eng">
             Note that correlations between the data points are not taken into account in this formalism. A detailed overview of uncertainty propagation including correlations can be found <a href="https://en.wikipedia.org/wiki/Propagation_of_uncertainty#Non-linear_combinations">here</a>. <br><br>
 
-            More information about the weighted arithemtic mean formalism can be found <a href="https://en.wikipedia.org/wiki/Weighted_arithmetic_mean">here</a>.
+            More information about the weighted arithemtic mean formalism can be found <a href="https://en.wikipedia.org/wiki/Weighted_arithmetic_mean">here</a>. <br><br>
+
+            <small>Many thanks to M. Stryjczyk for reviewing the english text.</small>
+        </span>
+
+        <span class="translatable translate-eng">
+            
         </span>
     </div>
 
