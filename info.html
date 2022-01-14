@@ -31,7 +31,7 @@ td, th {
     <div class="row col-12" style="margin-bottom:30px">
         <div class="col-10">
             <b data-translate="Weighted Mean Calculator">Weighted Mean Calculator</b>
-            <span>v. 1.3</span>
+            <span>v. 1.4</span>
             <span> | </span>
             <span><a href="index.html" data-translate="back to the app">back to the app</a></span>
         </div>
@@ -50,8 +50,13 @@ td, th {
 
             In order to calculate the mean value of such a dataset \( \langle x \rangle _{w} \), we use the weighted arithmetic mean. It is similar to an ordinary arithmetic mean (the most common type of average), but each data point is multiplied by a weight \( w_i \) with some data points contribute more than others. Another difference is in a denominator - instead of a number of measurements, a sum of weights is used.
         </span>
+        <span class="translatable translate-fr">
+            Lors de plusieurs mesures identiques, il est ordinaire d’utiliser la moyenne arithmétique afin de trouver la moyenne. Il est aussi possible d’estimer l’incertitude de cette estimation en calculant l’écart-type des mesures. Cependant, la moyenne arithmétique ne prend pas en compte les incertitudes individuelles de chaque mesure.<br><br>
 
-        <span class="translatable translate-eng">
+            Afin de calculer la valeur moyenne d’une liste de données \( \langle x \rangle _{w} \), il est recommandé d’utiliser la moyenne arithmétique pondérée. La façon de calculer cette moyenne pondérée est similaire à celle de la moyenne arithmétique (qui est la façon la plus commune de calculer une moyenne), mais chaque valeur est multipliée par un facteur de pondération \( w_i \). Le dénominateur va lui aussi changer, il faut diviser par la somme des facteurs de pondération.
+        </span>
+
+        <span>
             $$ \langle x \rangle _{w} = \frac{ \sum_{i=1}^{N} w_i x_i }{ \sum_{i=1}^{N} w_i } $$
         </span>
 
@@ -60,47 +65,55 @@ td, th {
 
             A commonly used set of weights are inverse variances \( w_i = 1/\sigma_i^2 \). This choice guarantees that the smaller the variance (the more precise the mesurement), the higher the importance of the data point is.
         </span>
-        <span class="translatable translate-fr">Pas encore de support en français.<br><br></span>
+        <span class="translatable translate-fr">
+            Notez bien que lorsque tous les facteurs de pondération sont identiques, la formule deviendra celle de la moyenne arithmétique « commune ».
+
+            Un choix commun de facteur de pondération est celui de la variance inverse \( w_i = 1/\sigma_i^2 \). Ce choix garantit que plus la variance est petite (plus la mesure est précise), plus le facteur de pondération sera grand et donc plus cette valeur prendra de l’importance. 
+        </span>
         <span class="translatable translate-de">Noch kein Support auf Deutsch.<br><br></span>
 
-        <span class="translatable translate-eng">Thus, the weighted arithmetic mean becomes:</span>
-        <span class="translatable translate-fr">La définition de la moyenne arithmétique pondérée:</span>
+        <span class="translatable translate-eng">Thus, the weighted arithmetic mean becomes :</span>
+        <span class="translatable translate-fr">Par conséquent, la moyenne arithmétique pondérée devient :</span>
         <span class="translatable translate-de">Die Definition des gewichtetes arithmetisches Mittel:</span>
         <span>
             $$ \langle x \rangle _{w} = \frac{ \sum_{i=1}^{N} \frac{x_i}{\sigma_i^2} }{ \sum_{i=1}^{N} \frac{1}{\sigma_i^2} } $$
         </span>
 
-        <span class="translatable translate-eng">and the statistical variance of the weighted mean is:</span>
-        <span class="translatable translate-fr">La définition de la variance statistique de la moyenne pondérée:</span>
+        <span class="translatable translate-eng">and the statistical variance of the weighted mean is :</span>
+        <span class="translatable translate-fr">Ainsi que la variance statistique de la moyenne pondérée est :</span>
         <span class="translatable translate-de">Die Definition der statistischen Varianz des gewichteten Mittels:</span>
         <span>
             $$ \sigma_{x, stat}^2 = \frac{1}{\sum_{i=1}^{N} \frac{1}{\sigma_i^2}} $$
         </span>
 
         <span class="translatable translate-eng">
-            Weighted means are typically used to find the weighted mean of experimental data where typical experiemntal errors may be underestimted or ommited in calculating the variance of each data point. To accomodate this fact, the variance needs to be corrected by the reduced \( \chi^2 \) of the mean :
+            Weighted means are typically used to find the weighted mean of experimental data where typical experimental errors may be underestimated or omitted in calculating the variance of each data point. To accommodate this fact, the variance needs to be corrected by the reduced \( \chi^2 \) of the mean :
         </span>
-        <!-- <span class="translatable translate-eng">Definition of the sample-scatter variance of the weighted mean:</span> -->
-        <span class="translatable translate-fr">La définition de la variance de dispersion d'échantillon de la moyenne pondérée:</span>
+        <span class="translatable translate-fr">
+            Les moyennes pondérées sont typiquement utilisées pour trouver la moyenne d’une liste de données expérimentales lorsque l’écart-type peut être sous-estimé ou omit en calculant la variance de chaque valeur. Pour tenir en compte de ce fait, la variance nécessite une correction par le \( \chi^2 \) réduit de la moyenne :
+        </span>
         <span class="translatable translate-de">Definition der Stichprobenstreuvarianz des gewichteten Mittels:</span>
         <span>
             $$ \sigma_{x, scatter}^2 = \sigma_{x, stat}^2 \; \chi_{red}^2 = \frac{1}{\left( N-1 \right)} \frac{ \sum_{i=1}^{N} \left( \frac{x_i - \langle x \rangle _{w} }{ \sigma_i } \right) ^2 }{ \sum_{i=1}^{N} \frac{1}{\sigma_i^2}  } $$
         </span>
         <span class="translatable translate-eng">The true variance is always the biggest of the two:</span>
-        <span class="translatable translate-fr">La variance vrai est toujours la plus grande des deux:</span>
+        <span class="translatable translate-fr">La variance est toujours la valeur la plus grande :</span>
         <span class="translatable translate-de">Die wahre varianz ist immer die größte der beiden:</span>
         <span>$$ \sigma_x^2 = max \left\{ \sigma_{x, stat}^2, \sigma_{x, scatter}^2 \right\} $$</span>
 
         <span class="translatable translate-eng">
             Note that correlations between the data points are not taken into account in this formalism. A detailed overview of uncertainty propagation including correlations can be found <a href="https://en.wikipedia.org/wiki/Propagation_of_uncertainty#Non-linear_combinations">here</a>. <br><br>
 
-            More information about the weighted arithemtic mean formalism can be found <a href="https://en.wikipedia.org/wiki/Weighted_arithmetic_mean">here</a>. <br><br>
+            More information about the weighted arithmetic mean formalism can be found <a href="https://en.wikipedia.org/wiki/Weighted_arithmetic_mean">here</a>. <br><br>
 
             <small>Many thanks to M. Stryjczyk for reviewing the english text.</small>
         </span>
+        <span class="translatable translate-fr">
+            Notez que la corrélation entre la liste de données n’est pas prise en compte dans ce cas. Un aperçu détaillé de la propagation d’incertitudes qui inclut les corrélations peut être trouvé <a href="https://en.wikipedia.org/wiki/Propagation_of_uncertainty#Non-linear_combinations">ici</a>. <br><br>
 
-        <span class="translatable translate-eng">
-            
+            Plus d’information sur la moyenne arithmétique pondérée peut être trouvé <a href="https://en.wikipedia.org/wiki/Weighted_arithmetic_mean">ici</a>. <br><br>
+
+            <small>Merci à A. Baxarias Fontaine pour la révision de cette traduction.</small>
         </span>
     </div>
 
