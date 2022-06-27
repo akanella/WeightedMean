@@ -14,17 +14,18 @@
 </head>
 
 <style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
 </style>
 
 <body style="padding-bottom: 90px;">
@@ -37,58 +38,64 @@ td, th {
         </div>
         <div class="col-2">
             <div class="dropdown text-center">
-                <a class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Language
+                <a class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <span class="translatable translate-eng"><span class="fi fi-gb fig"></span> english</span>
+                    <span class="translatable translate-fr"><span class="fi fi-fr fig"></span> français</span>
+                    <span class="translatable translate-de"><span class="fi fi-de fig"></span> deutsch</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="eng"> <span class="fi fi-gb fig"></span> english </a>
-                    <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="fr"> <span class="fi fi-fr fig"></span> français </a>
-                    <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="de"> <span class="fi fi-de fig"></span> deutsch </a>
+                    <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="eng"> <span
+                            class="fi fi-gb fig"></span> english </a>
+                    <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="fr"> <span
+                            class="fi fi-fr fig"></span> français </a>
+                    <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="de"> <span
+                            class="fi fi-de fig"></span> deutsch </a>
                 </div>
-              </div>
+            </div>
         </div>
     </div>
     <form id="Weighted-Mean">
         <div class="row col-8 offset-2">
-			<div class="col row">
-				<div class="col-12 ">
-					<button type="button" class="btn btn-success btn-circle" style="border-radius:40%"
-						id="addsample-btn">+</button>
-					<button type="button" class="btn btn-danger btn-circle" style="border-radius:40%"
-						id="removesample-btn">-</button>
-				</div>
-				<div class="form-group col">
-					<label for="Values" data-translate="Values">Values</label>
-					<input type="number" id="val" name="val[]" class="form-control required">
-				</div>
-			</div>
-			<div class="col row">
-				<div class="col-12 ">
-					<h5>&nbsp;</h5>
-				</div>
-				<div class="form-group col">
-					<label for="Uncertainties" data-translate="Uncertainties">Uncertainties</label>
-					<input type="number" id="unc" name="unc[]" class="form-control required">
-				</div>
-			</div>
-		</div>
+            <div class="col row">
+                <div class="col-12 ">
+                    <button type="button" class="btn btn-success btn-circle" style="border-radius:40%"
+                        id="addsample-btn">+</button>
+                    <button type="button" class="btn btn-danger btn-circle" style="border-radius:40%"
+                        id="removesample-btn">-</button>
+                </div>
+                <div class="form-group col">
+                    <label for="Values" data-translate="Values">Values</label>
+                    <input type="number" id="val" name="val[]" class="form-control required" tabindex="1">
+                </div>
+            </div>
+            <div class="col row">
+                <div class="col-12 ">
+                    <h5>&nbsp;</h5>
+                </div>
+                <div class="form-group col">
+                    <label for="Uncertainties" data-translate="Uncertainties">Uncertainties</label>
+                    <input type="number" id="unc" name="unc[]" class="form-control required" tabindex="1.5">
+                </div>
+            </div>
+        </div>
 
-		<div class="row col-8 offset-3" id="calculate-buttons">
-			<div class="row col-12">
-				<div>
-					<button type="button" id="calculate" class="btn btn-success"
-						data-translate="Calculate">Calculate</button>
-				</div>
+        <div class="row col-8 offset-3" id="calculate-buttons">
+            <div class="row col-12">
+                <div>
+                    <button type="button" id="calculate" class="btn btn-success"
+                        data-translate="Calculate">Calculate</button>
+                </div>
                 <div class="offset-1">
                     <input type="reset" id="reset-btn" value="Reset" class="btn btn-danger" data-translate="Reset">
                 </div>
-			</div>
-			<div class="col-12 form-group" id="result-tab" style="display:none">
+            </div>
+            <div class="col-12 form-group" id="result-tab" style="display:none">
                 <br>
-				<label for="result" data-translate="Result:">Result:</label>
-				<div id="result" class="alert alert-success"></div>
-			</div>
-		</div>
+                <label for="result" data-translate="Result:">Result:</label>
+                <div id="result" class="alert alert-success"></div>
+            </div>
+        </div>
     </form>
 
     <div class="row col-12"
@@ -107,7 +114,7 @@ td, th {
     <script>
         $(document).ready(function () {
             var lang = 'eng'; var myChart = null;
-			
+
             function t(value) {
                 switch (lang) {
                     case 'fr':
@@ -132,8 +139,8 @@ td, th {
                         $(this).html(translation);
                     }
                 });
-				$('.translatable').hide();
-				$('.translatable.translate-'+lang).show();
+                $('.translatable').hide();
+                $('.translatable.translate-' + lang).show();
             }
 
             if (typeof (Storage) !== "undefined") {
@@ -153,8 +160,8 @@ td, th {
             })
 
             $('#addsample-btn').on('click', function () {
-                $("input[name='val[]']").last().after('<input type="number" name="val[]" class="form-control required">');
-                $("input[name='unc[]']").last().after('<input type="number" name="unc[]" class="form-control required">');
+                $("input[name='val[]']").last().after('<input type="number" name="val[]" class="form-control required" tabindex="' + ($("input[name='val[]']").length + 1) + '">');
+                $("input[name='unc[]']").last().after('<input type="number" name="unc[]" class="form-control required" tabindex="' + ($("input[name='unc[]']").length + 1) + '.5">');
             })
 
             $('#removesample-btn').on('click', function () {
@@ -172,53 +179,53 @@ td, th {
             $('#calculate').on('click', async function (event, arg1) {
 
                 var result = null;
-				var invalidvalues = [];
+                var invalidvalues = [];
 
-				var valAr = $("input[name='val[]']").map(function () { return parseFloat($(this).val()); }).get().filter((value,index) => {
-					if(!value && value!=0){
-						invalidvalues.push(index);
-						return false;
-					}
-					return true;
-				});
-				var uncAr = $("input[name='unc[]']").map(function () { return parseFloat($(this).val()); }).get().filter((unc,index) => !invalidvalues.includes(index));
+                var valAr = $("input[name='val[]']").map(function () { return parseFloat($(this).val()); }).get().filter((value, index) => {
+                    if (!value && value != 0) {
+                        invalidvalues.push(index);
+                        return false;
+                    }
+                    return true;
+                });
+                var uncAr = $("input[name='unc[]']").map(function () { return parseFloat($(this).val()); }).get().filter((unc, index) => !invalidvalues.includes(index));
 
                 var numeratorMean = 0.
                 var denominatorMean = 0.
                 var numeratorSigmaScat = 0.
 
-				console.log(valAr);
-				console.log(uncAr);
+                console.log(valAr);
+                console.log(uncAr);
 
                 for (var i in valAr) {
-					if(!uncAr[i]){
-						alert(t('Empty field or zero value for uncertianty is not allowed'));
-						return false;
-					}
-				
-                    numeratorMean += valAr[i]/Math.pow(uncAr[i],2)
-                    denominatorMean += 1/Math.pow(uncAr[i],2)
+                    if (!uncAr[i]) {
+                        alert(t('Empty field or zero value for uncertianty is not allowed'));
+                        return false;
+                    }
+
+                    numeratorMean += valAr[i] / Math.pow(uncAr[i], 2)
+                    denominatorMean += 1 / Math.pow(uncAr[i], 2)
                 }
 
-                var meanWeight = numeratorMean/denominatorMean;
-                var sigmaStatSq = 1/denominatorMean;
+                var meanWeight = numeratorMean / denominatorMean;
+                var sigmaStatSq = 1 / denominatorMean;
 
                 for (var i in valAr) {
-                    numeratorSigmaScat += Math.pow((valAr[i]-meanWeight)/uncAr[i],2)
+                    numeratorSigmaScat += Math.pow((valAr[i] - meanWeight) / uncAr[i], 2)
                 }
 
-                var sigmaScatSq = numeratorSigmaScat/((valAr.length-1)*denominatorMean);
+                var sigmaScatSq = numeratorSigmaScat / ((valAr.length - 1) * denominatorMean);
 
-                if (sigmaStatSq>sigmaScatSq){
-                    var meanWeightSigma = Math.pow(sigmaStatSq,0.5)
+                if (sigmaStatSq > sigmaScatSq) {
+                    var meanWeightSigma = Math.pow(sigmaStatSq, 0.5)
                 } else {
-                    var meanWeightSigma = Math.pow(sigmaScatSq,0.5)
+                    var meanWeightSigma = Math.pow(sigmaScatSq, 0.5)
                 }
 
-				result = meanWeight + ' &pm; ' + meanWeightSigma;
+                result = meanWeight + ' &pm; ' + meanWeightSigma;
 
-			$('#result').html('&lt;x&gt; = ' + result);
-			$('#result-tab').show();
+                $('#result').html('&lt;x&gt; = ' + result);
+                $('#result-tab').show();
 
             })
         })
