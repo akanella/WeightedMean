@@ -33,7 +33,7 @@ td, th {
     <div class="row col-12" style="margin-bottom:30px">
         <div class="col-10">
             <b data-translate="Weighted Mean Calculator">Weighted Mean Calculator</b>
-            <span>v. 1.4</span>
+            <span data-details="version">v. 1.4</span>
             <span> | </span>
             <span><a href="index.html" data-translate="back to the app">back to the app</a></span>
         </div>
@@ -187,6 +187,18 @@ td, th {
                     localStorage.setItem("language", lang);
                 }
             })
+			
+			fetch('details.json')
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (jsonResponse) {
+                    $('*[data-details]').each(function () {
+                        if (jsonResponse[$(this).data("details")]) {
+                            $(this).html(jsonResponse[$(this).data("details")]);
+                        }
+                    });
+                });
         })
     </script>
 </body>

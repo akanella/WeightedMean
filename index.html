@@ -32,7 +32,7 @@
     <div class="row col-12" style="margin-bottom:30px">
         <div class="col-10">
             <b data-translate="Weighted Mean Calculator">Weighted Mean Calculator</b>
-            <span>v. 1.4</span>
+            <span data-details="version">v. 1.4</span>
             <span> | </span>
             <span><a href="info.html">info</a></span>
         </div>
@@ -228,6 +228,18 @@
                 $('#result-tab').show();
 
             })
+
+            fetch('details.json')
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (jsonResponse) {
+                    $('*[data-details]').each(function () {
+                        if (jsonResponse[$(this).data("details")]) {
+                            $(this).html(jsonResponse[$(this).data("details")]);
+                        }
+                    });
+                });
         })
     </script>
 </body>
