@@ -19,3 +19,15 @@ var german = {
     "Empty field or zero value for uncertianty is not allowed": "Leeres Feld oder Nullwert für Unsicherheit ist nicht zulässig",
     "back to the app": "zurück zur App",
 }
+
+var greek = {
+    "Weighted Mean Calculator": "Υπολογισμός σταθμισμένου μέσου",
+    "Values": "Τιμές",
+    "Uncertainties": "Αβεβαιότητες",
+    "Calculate": "Υπολογισμός",
+    "Reset": "Μηδενισμός",
+    "Result": "Αποτέλεσμα",
+    "Empty field or zero value for uncertianty is not allowed": "Κενά πεδία ή μηδενική τιμή για την αβεβαιότητα δεν επιτρέπεται",
+    "back to the app": "επιστροφή στην εφαρμογή",
+}
+

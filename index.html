@@ -34,7 +34,7 @@
             <b data-translate="Weighted Mean Calculator">Weighted Mean Calculator</b>
             <span>v. 1.4</span>
             <span> | </span>
-            <span><a href="info.html">info</a></span>
+            <span data-translate="info"><a href="info.html">info</a></span>
         </div>
         <div class="col-2">
             <div class="dropdown text-center">
@@ -43,6 +43,8 @@
                     <span class="translatable translate-eng"><span class="fi fi-gb fig"></span> english</span>
                     <span class="translatable translate-fr"><span class="fi fi-fr fig"></span> français</span>
                     <span class="translatable translate-de"><span class="fi fi-de fig"></span> deutsch</span>
+                    <span class="translatable translate-gr"><span class="fi fi-gr fig"></span> ελληνικά</span>
+
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="eng"> <span
@@ -51,6 +53,8 @@
                             class="fi fi-fr fig"></span> français </a>
                     <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="de"> <span
                             class="fi fi-de fig"></span> deutsch </a>
+                    <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="gr"> <span
+                            class="fi fi-gr fig"></span> ελληνικά </a>
                 </div>
             </div>
         </div>
@@ -124,6 +128,10 @@
                     case 'de':
                         if (german[value]) {
                             return german[value];
+                        }
+                    case 'gr':
+                        if (greek[value]) {
+                            return greek[value];
                         }
                     default:
                         return value;
