@@ -43,12 +43,14 @@ td, th {
                     <span class="translatable translate-eng"><span class="fi fi-gb fig"></span> english</span>
                     <span class="translatable translate-fr"><span class="fi fi-fr fig"></span> français</span>
                     <span class="translatable translate-de"><span class="fi fi-de fig"></span> deutsch</span>
+                    <span class="translatable translate-es"><span class="fi fi-es fig"></span> español</span>
                     <span class="translatable translate-gr"><span class="fi fi-gr fig"></span> ελληνικά</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="eng"> <span class="fi fi-gb fig"></span> english </a>
                     <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="fr"> <span class="fi fi-fr fig"></span> français </a>
                     <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="de"> <span class="fi fi-de fig"></span> deutsch </a>
+                    <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="es"> <span class="fi fi-es fig"></span> español </a>
                     <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="gr"> <span class="fi fi-gr fig"></span> ελληνικά </a>
                 </div>
               </div>
@@ -71,6 +73,11 @@ td, th {
 
             Για να υπολογίσουμε την μέση τιμή ενός τέτοιου συνόλου δεδομένων \( \langle x \rangle _{w} \), χρησιμοποιούμε τον σταθμισμένο αριθμητικό μέσο. Είναι παρόμοιος με τον απλό αριθμητικό μέσο (τον πιο κοινό τύπο μέσης τιμής), αλλά κάθε σημείο πολλαπλασιάζεται με ένα βάρος w_i με κάποια σημεία να συνεισφέρουν περισσότερο από άλλα. Μια άλλη διαφορά είναι ο παρονομαστής, όπου αντί για το πλήθος των σημείων, χρησιμοποιούμε το άθροισμα των βαρών.
         </span>
+        <span class="translatable translate-es">
+            Cuando realizamos múltiples medidas de una misma cantidad, normalmente hacemos uso de la media aritmética para encontrar su valor correcto. Podemos estimar la incertidumbre de nuestra estimación usando, por ejemplo, la desviación estándar de todas nuestras medidas. Sin embargo, la media aritmética no tiene en cuenta las diferencias en la precisión a la hora de tomar cada medida, las cuales son expresadas por las incertidumbres proporcionadas.<br><br>
+
+            Para calcular el valor medio de una base de datos \( \langle x \rangle _{w} \), usaremos la media ponderada. Esta es similar a una media aritmética ordinaria (el tipo más común de media), pero en la que cada dato es multiplicado por un peso w_i, con lo que algunos valores en los datos contribuyen más que otros. Otra diferencia se encuentra en el denominador, en vez la suma del número de valores utilizados se utilizará la suma de sus pesos.
+        </span>
 
         <span>
             $$ \langle x \rangle _{w} = \frac{ \sum_{i=1}^{N} w_i x_i }{ \sum_{i=1}^{N} w_i } $$
@@ -92,12 +99,18 @@ td, th {
 
             Ένα ευρέως χρησιμοποιούμενο σύνολο βαρών είναι οι αντίστροφες αποκλίσεις \( w_i = 1/\sigma_i^2 \). Αυτή η επιλογή εγγυάται ότι όσο μικρότερη η απόκλιση (άρα πιο ακριβής μέτρηση), τόσο μεγαλύτερη η συνεισφορά του σημείου. 
         </span>
+        <span class="translatable translate-es">
+            Ténganse en cuenta que cuando todos los pesos son idénticos, la fórmula es simplificada a la de una media aritmética “normal”. 
+
+            Un conjunto de pesos comúnmente utilizados son la inversa de las varianzas \( w_i = 1/\sigma_i^2 \). Esta elección garantiza que cuanto más pequeña sea la varianza (la medida con mayor precisión), mayor importancia sea dada a este dato.
+        </span>
 
         <span class="translatable translate-eng">Thus, the weighted arithmetic mean becomes:</span>
         <span class="translatable translate-fr">Par conséquent, la moyenne arithmétique pondérée devient :</span>
         <span class="translatable translate-de">Die Definition des gewichtetes arithmetisches Mittel:</span>
         <span class="translatable translate-gr">Συνεπώς, ο σταθμισμένος αριθμητικός μέσος γίνεται:</span>
-
+        <span class="translatable translate-es">Por lo tanto, la media ponderada se convierte en: </span>
+ 
         <span>
             $$ \langle x \rangle _{w} = \frac{ \sum_{i=1}^{N} \frac{x_i}{\sigma_i^2} }{ \sum_{i=1}^{N} \frac{1}{\sigma_i^2} } $$
         </span>
@@ -106,6 +119,7 @@ td, th {
         <span class="translatable translate-fr">Ainsi que la variance statistique de la moyenne pondérée est :</span>
         <span class="translatable translate-de">Die Definition der statistischen Varianz des gewichteten Mittels:</span>
         <span class="translatable translate-gr">Και η στατιστική απόκλιση του σταθμισμένου μέσου είναι:</span>
+        <span class="translatable translate-es">Y la variación estadística de la media ponderada:</span>
 
         <span>
             $$ \sigma_{x, stat}^2 = \frac{1}{\sum_{i=1}^{N} \frac{1}{\sigma_i^2}} $$
@@ -121,6 +135,9 @@ td, th {
         <span class="translatable translate-gr">
             Ο σταθμισμένος μέσος χρησιμοποιείται συνήθως για να βρεθεί η μέση τιμή πειραματικών δεδομένων όπου πειραματικά σφάλματα ενδέχεται να υποεκτιμηθούν ή να παραλειφθούν κατά τον υπολογισμό της απόκλισης κάθε σημείου. Για να αποφευχθεί αυτό, η απόκλιση πρέπει να διορθωθεί με το ανηγμένο \( \chi^2 \) του μέσου:
         </span>
+        <span class="translatable translate-es">
+            Las medias ponderadas son típicamente utilizadas para encontrar el valor medio de un conjunto de datos donde típicamente los errores experimentales pueden ser subestimados u omitidos al calcular la varianza de cada dato. Para adaptarse a esto, la varianza necesita ser corregida por la \( \chi^2 \) de la media:
+        </span>
 
         <span>
             $$ \sigma_{x, scatter}^2 = \sigma_{x, stat}^2 \; \chi_{red}^2 = \frac{1}{\left( N-1 \right)} \frac{ \sum_{i=1}^{N} \left( \frac{x_i - \langle x \rangle _{w} }{ \sigma_i } \right) ^2 }{ \sum_{i=1}^{N} \frac{1}{\sigma_i^2}  } $$
@@ -130,7 +147,7 @@ td, th {
         <span class="translatable translate-fr">La variance est toujours la valeur la plus grande :</span>
         <span class="translatable translate-de">Die wahre varianz ist immer die größte der beiden:</span>
         <span class="translatable translate-gr">Η πραγματική απόκλιση είναι πάντα η μεγαλύτερη των δύο τιμών:</span>
-
+        <span class="translatable translate-es">La varianza real es siempre la mayor de estas dos:</span>
 
         <span>$$ \sigma_x^2 = max \left\{ \sigma_{x, stat}^2, \sigma_{x, scatter}^2 \right\} $$</span>
 
@@ -152,6 +169,13 @@ td, th {
             Να σημειωθεί ότι οι συσχετίσεις μεταξύ των σημείων δεν λαμβάνονται υπόψιν από αυτόν το φορμαλισμό. Μια λεπτομερής επισκόπηση της διάδοσης σφαλμάτων, συμπεριλαμβανομένων των συσχετίσεων, μπορεί να βρεθεί <a href="https://en.wikipedia.org/wiki/Propagation_of_uncertainty#Non-linear_combinations">εδώ</a>. <br><br>
 
             Περισσότερες πληροφορίες για τον σταθμισμένος αριθμητικό μέσο μπορούν να βρεθούν <a href="https://en.wikipedia.org/wiki/Weighted_arithmetic_mean">εδώ</a>. <br><br>
+        </span>
+        <span class="translatable translate-es">
+            Téngase en cuenta que las correlaciones entre los valores de los datos no son tomadas en cuenta en este formalismo. Una visión general más detallada de la propagación de incertidumbres incluyendo correlaciones puede ser encontrada <a href="https://en.wikipedia.org/wiki/Propagation_of_uncertainty#Non-linear_combinations">aquí</a>. <br><br>
+
+            Más información sobre el formalismo de la media ponderada puede ser consultado <a href="https://en.wikipedia.org/wiki/Weighted_arithmetic_mean">aquí</a>. <br><br>
+
+            <small>Gracias a V. Sanchez-Tembleque por la edición de esta traducción.</small>
         </span>
     </div>
 
@@ -185,6 +209,10 @@ td, th {
                     case 'gr':
                         if (greek[value]) {
                             return greek[value];
+                        }
+                    case 'es':
+                        if (spanish[value]) {
+                            return spanish[value];
                         }
                     default:
                         return value;

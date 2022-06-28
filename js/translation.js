@@ -31,3 +31,14 @@ var greek = {
     "back to the app": "επιστροφή στην εφαρμογή",
 }
 
+var spanish = {
+    "Weighted Mean Calculator": "Cálculo Media Ponederada",
+    "Values": "Valores",
+    "Uncertainties": "Incertidumbres",
+    "Calculate": "Calcular",
+    "Reset": "Reiniciar",
+    "Result": "Resultado",
+    "Empty field or zero value for uncertianty is not allowed": "Valor de incertidumbre sin rellenar",
+    "back to the app": "volver a la app",
+}
+
