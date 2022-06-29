@@ -33,7 +33,7 @@
     <div class="row col-12" style="margin-bottom:30px">
         <div class="col-10">
             <b data-translate="Weighted Mean Calculator">Weighted Mean Calculator</b>
-            <span>v. 1.5</span>
+            <span>v. 1.6</span>
             <span> | </span>
             <span><a href="info.html">info</a></span>
         </div>
@@ -45,6 +45,7 @@
                     <span class="translatable translate-fr"><span class="fi fi-fr fig"></span> français</span>
                     <span class="translatable translate-de"><span class="fi fi-de fig"></span> deutsch</span>
                     <span class="translatable translate-es"><span class="fi fi-es fig"></span> español</span>
+                    <span class="translatable translate-pt"><span class="fi fi-pt fig"></span> português</span>
                     <span class="translatable translate-gr"><span class="fi fi-gr fig"></span> ελληνικά</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -56,6 +57,8 @@
                             class="fi fi-de fig"></span> deutsch </a>
                     <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="es"> <span
                             class="fi fi-es fig"></span> español </a>
+                    <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="pt"> <span
+                            class="fi fi-pt fig"></span> português </a>
                     <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="gr"> <span
                             class="fi fi-gr fig"></span> ελληνικά </a>
                 </div>
@@ -141,6 +144,10 @@
                     case 'es':
                         if (spanish[value]) {
                             return spanish[value];
+                        }
+                    case 'pt':
+                        if (portuguese[value]) {
+                            return portuguese[value];
                         }
                     default:
                         return value;

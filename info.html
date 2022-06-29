@@ -34,7 +34,7 @@ td, th {
     <div class="row col-12" style="margin-bottom:30px">
         <div class="col-10">
             <b data-translate="Weighted Mean Calculator">Weighted Mean Calculator</b>
-            <span>v. 1.5</span>
+            <span>v. 1.6</span>
             <span> | </span>
             <span><a href="index.html" data-translate="back to the app">back to the app</a></span>
         </div>
@@ -45,6 +45,7 @@ td, th {
                     <span class="translatable translate-fr"><span class="fi fi-fr fig"></span> français</span>
                     <span class="translatable translate-de"><span class="fi fi-de fig"></span> deutsch</span>
                     <span class="translatable translate-es"><span class="fi fi-es fig"></span> español</span>
+                    <span class="translatable translate-pt"><span class="fi fi-pt fig"></span> português</span>
                     <span class="translatable translate-gr"><span class="fi fi-gr fig"></span> ελληνικά</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -52,6 +53,7 @@ td, th {
                     <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="fr"> <span class="fi fi-fr fig"></span> français </a>
                     <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="de"> <span class="fi fi-de fig"></span> deutsch </a>
                     <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="es"> <span class="fi fi-es fig"></span> español </a>
+                    <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="pt"> <span class="fi fi-pt fig"></span> português </a>
                     <a style="cursor:pointer" class="dropdown-item languages text-center" data-lang="gr"> <span class="fi fi-gr fig"></span> ελληνικά </a>
                 </div>
               </div>
@@ -79,6 +81,11 @@ td, th {
 
             Para calcular el valor medio de una base de datos \( \langle x \rangle _{w} \), usaremos la media ponderada. Esta es similar a una media aritmética ordinaria (el tipo más común de media), pero en la que cada dato es multiplicado por un peso w_i, con lo que algunos valores en los datos contribuyen más que otros. Otra diferencia se encuentra en el denominador, en vez la suma del número de valores utilizados se utilizará la suma de sus pesos.
         </span>
+        <span class="translatable translate-pt">
+            Quando temos várias medidas da mesma quantidade, geralmente usamos a média aritmética para encontrar o valor verdadeiro. Também podemos estimar a incerteza da nossa estimativa usando, por exemplo, um desvio padrão de todas as medições. No entanto, a média aritmética não tem em consideração as diferenças de precisão de cada medição, que são expressas pelas incertezas fornecidas.<br><br>
+
+            Para calcular o valor médio de tal conjunto de dados \( \langle x \rangle _{w} \), usamos a média aritmética ponderada. É semelhante a uma média aritmética comum (o tipo mais comum de média), mas cada ponto de dados é multiplicado por um peso w_i com alguns pontos de dados contribuindo mais do que outros. Outra diferença está num denominador - em vez de um número de medidas, é usada uma soma de pesos.
+        </span>
 
         <span>
             $$ \langle x \rangle _{w} = \frac{ \sum_{i=1}^{N} w_i x_i }{ \sum_{i=1}^{N} w_i } $$
@@ -105,12 +112,20 @@ td, th {
 
             Un conjunto de pesos comúnmente utilizados son la inversa de las varianzas \( w_i = 1/\sigma_i^2 \). Esta elección garantiza que cuanto más pequeña sea la varianza (la medida con mayor precisión), mayor importancia sea dada a este dato.
         </span>
+        <span class="translatable translate-pt">
+            Observe que quando todos os pesos são idênticos, a fórmula é reduzida a uma média aritmética "normal".
+
+            Um conjunto de pesos comumente usado são as variâncias inversas \( w_i = 1/\sigma_i^2 \). Essa escolha garante que quanto menor a variância (mais precisa a medição), maior a importância do ponto de dados.
+
+        </span>
 
         <span class="translatable translate-eng">Thus, the weighted arithmetic mean becomes:</span>
         <span class="translatable translate-fr">Par conséquent, la moyenne arithmétique pondérée devient :</span>
         <span class="translatable translate-de">Die Definition des gewichtetes arithmetisches Mittel:</span>
         <span class="translatable translate-gr">Συνεπώς, ο σταθμισμένος αριθμητικός μέσος γίνεται:</span>
         <span class="translatable translate-es">Por lo tanto, la media ponderada se convierte en: </span>
+        <span class="translatable translate-pt">Assim, a média aritmética ponderada fica: </span>
+
  
         <span>
             $$ \langle x \rangle _{w} = \frac{ \sum_{i=1}^{N} \frac{x_i}{\sigma_i^2} }{ \sum_{i=1}^{N} \frac{1}{\sigma_i^2} } $$
@@ -121,6 +136,7 @@ td, th {
         <span class="translatable translate-de">Die Definition der statistischen Varianz des gewichteten Mittels:</span>
         <span class="translatable translate-gr">Και η στατιστική απόκλιση του σταθμισμένου μέσου είναι:</span>
         <span class="translatable translate-es">Y la variación estadística de la media ponderada:</span>
+        <span class="translatable translate-pt">e a variância estatística da média ponderada é:</span>
 
         <span>
             $$ \sigma_{x, stat}^2 = \frac{1}{\sum_{i=1}^{N} \frac{1}{\sigma_i^2}} $$
@@ -139,6 +155,9 @@ td, th {
         <span class="translatable translate-es">
             Las medias ponderadas son típicamente utilizadas para encontrar el valor medio de un conjunto de datos donde típicamente los errores experimentales pueden ser subestimados u omitidos al calcular la varianza de cada dato. Para adaptarse a esto, la varianza necesita ser corregida por la \( \chi^2 \) de la media:
         </span>
+        <span class="translatable translate-pt">
+            As médias ponderadas são normalmente usadas para encontrar a média ponderada de dados experimentais onde os erros experimentais típicos podem ser subestimados ou omitidos no cálculo da variância de cada ponto de dados. Para acomodar esse facto, a variância precisa ser corrigida pela redução \( \chi^2 \) da média:
+        </span>
 
         <span>
             $$ \sigma_{x, scatter}^2 = \sigma_{x, stat}^2 \; \chi_{red}^2 = \frac{1}{\left( N-1 \right)} \frac{ \sum_{i=1}^{N} \left( \frac{x_i - \langle x \rangle _{w} }{ \sigma_i } \right) ^2 }{ \sum_{i=1}^{N} \frac{1}{\sigma_i^2}  } $$
@@ -149,6 +168,8 @@ td, th {
         <span class="translatable translate-de">Die wahre varianz ist immer die größte der beiden:</span>
         <span class="translatable translate-gr">Η πραγματική απόκλιση είναι πάντα η μεγαλύτερη των δύο τιμών:</span>
         <span class="translatable translate-es">La varianza real es siempre la mayor de estas dos:</span>
+        <span class="translatable translate-pt">A verdadeira variância é sempre a maior das duas:</span>
+
 
         <span>$$ \sigma_x^2 = max \left\{ \sigma_{x, stat}^2, \sigma_{x, scatter}^2 \right\} $$</span>
 
@@ -178,10 +199,17 @@ td, th {
 
             <small>Gracias a V. Sanchez-Tembleque por la edición de esta traducción.</small>
         </span>
+        <span class="translatable translate-pt">
+            Observe que as correlações entre os pontos de dados não são tidas em consideração nesse formalismo. Uma visão detalhada da propagação de incertezas, incluindo correlações, pode ser encontrada <a href="https://en.wikipedia.org/wiki/Propagation_of_uncertainty#Non-linear_combinations">aqui</a>. <br><br>
+
+            Mais informações sobre o formalismo da média aritmética ponderada podem ser encontradas <a href="https://en.wikipedia.org/wiki/Weighted_arithmetic_mean">aqui</a>. <br><br>
+
+            <small>Obrigado a M. Da Silva Magalhaes  para a edição desta tradução.</small>
+        </span>
     </div>
 
     <div class="row col-12"
-        style="position:fixed; bottom:0px; text-align: left; width:100%; background:white; height: 50px">
+        style="position:fixed; bottom:0px; text-align: left; width:100%; background:white; height: 70px">
         <div class="col-10">
             <small class="form-text text-muted"> &copy; 2021. This work is licensed under a <a rel="license"
                     href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 license</a>. <br><span>Created by
@@ -216,6 +244,10 @@ td, th {
                     case 'es':
                         if (spanish[value]) {
                             return spanish[value];
+                        }
+                    case 'pt':
+                        if (portuguese[value]) {
+                            return portuguese[value];
                         }
                     default:
                         return value;

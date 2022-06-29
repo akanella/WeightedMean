@@ -38,7 +38,18 @@ var spanish = {
     "Calculate": "Calcular",
     "Reset": "Reiniciar",
     "Result": "Resultado",
-    "Empty field or zero value for uncertianty is not allowed": "Valor de incertidumbre sin rellenar",
+    "Empty field or zero value for uncertianty is not allowed": "No se permite el campo vacío o el valor cero para la incertidumbre",
     "back to the app": "volver a la app",
+}
+
+var portuguese = {
+    "Weighted Mean Calculator": "Calculadora de Média Ponderada",
+    "Values": "Valores",
+    "Uncertainties": "Incertezas",
+    "Calculate": "Calcular",
+    "Reset": "Reinicializar",
+    "Result": "Resultado",
+    "Empty field or zero value for uncertianty is not allowed": "Campo vazio ou valor zero para a não-cerdade não é permitido",
+    "back to the app": "voltar à app",
 }
 
