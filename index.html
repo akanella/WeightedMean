@@ -66,7 +66,16 @@
         </div>
     </div>
     <form id="Weighted-Mean">
-        <div class="row col-8 offset-2">
+        <div class="col-12 text-center" id="input-buttons" style="margin-top:50px">
+
+            <button type="button" id="spectroscopicinput-btn" class="btn btn-primary"
+                data-translate="Spectroscopic input">Spectroscopic input</button>
+            <button type="button" id="manualinput-btn" class="btn btn-secondary" data-translate="Manual input">Manual
+                input</button>
+
+        </div>
+
+        <div class="row col-8 offset-2 manualinput spectroscopicinput" style="display:none">
             <div class="col row">
                 <div class="col-12 ">
                     <button type="button" class="btn btn-success btn-circle" style="border-radius:40%"
@@ -90,7 +99,7 @@
             </div>
         </div>
 
-        <div class="row col-8 offset-3" id="calculate-buttons">
+        <div class="row col-8 offset-3 manualinput spectroscopicinput" id="calculate-buttons" style="display:none">
             <div class="row col-12">
                 <div>
                     <button type="button" id="calculate" class="btn btn-success"
@@ -183,9 +192,32 @@
                 }
             })
 
+            var inputtype = null;
+            $('#manualinput-btn').on('click', function () {
+                inputtype = 'manual';
+                $('#input-buttons').hide();
+                $('.manualinput').show();
+                $('#result-tab').hide();
+
+                $("input[name='unc[]']").css("cursor", "").prop('disabled', false);
+            })
+
+            $('#spectroscopicinput-btn').on('click', function () {
+                inputtype = 'spectroscopic';
+                $('#input-buttons').hide();
+                $('.spectroscopicinput').show();
+                $('#result-tab').hide();
+
+                $("input[name='unc[]']").css("cursor", "not-allowed").prop('disabled', true);
+            })
+
             $('#addsample-btn').on('click', function () {
                 $("input[name='val[]']").last().after('<input type="number" name="val[]" class="form-control required" tabindex="' + ($("input[name='val[]']").length + 1) + '">');
-                $("input[name='unc[]']").last().after('<input type="number" name="unc[]" class="form-control required" tabindex="' + ($("input[name='unc[]']").length + 1) + '.5">');
+                if (inputtype == 'spectroscopic') {
+                    $("input[name='unc[]']").last().after('<input type="number" name="unc[]" disabled="true" style="cursor:not-allowed" class="form-control" tabindex="' + ($("input[name='unc[]']").length + 1) + '.5">');
+                } else {
+                    $("input[name='unc[]']").last().after('<input type="number" name="unc[]" class="form-control required" tabindex="' + ($("input[name='unc[]']").length + 1) + '.5">');
+                }
             })
 
             $('#removesample-btn').on('click', function () {
@@ -198,6 +230,9 @@
 
             $('#reset-btn').on('click', function () {
                 $('#result-tab').hide();
+                $('.manualinput').hide();
+                $('.spectroscopicinput').hide();
+                $('#input-buttons').show();
             })
 
             $('#calculate').on('click', async function (event, arg1) {
@@ -212,7 +247,13 @@
                     }
                     return true;
                 });
-                var uncAr = $("input[name='unc[]']").map(function () { return parseFloat($(this).val()); }).get().filter((unc, index) => !invalidvalues.includes(index));
+                var uncAr;
+                if (inputtype == 'spectroscopic') {
+                    uncAr = []
+                    console.info('Εδω τα calculations')
+                } else {
+                    uncAr = $("input[name='unc[]']").map(function () { return parseFloat($(this).val()); }).get().filter((unc, index) => !invalidvalues.includes(index));
+                }
 
                 var numeratorMean = 0.
                 var denominatorMean = 0.
