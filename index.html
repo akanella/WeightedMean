@@ -249,8 +249,18 @@
                 });
                 var uncAr;
                 if (inputtype == 'spectroscopic') {
-                    uncAr = []
-                    console.info('Εδω τα calculations')
+                    $("input[name='unc[]']").val('');
+                    
+                    let invalidValueCounter = 0;
+                    uncAr = valAr.map((value, index) => {
+                        while (invalidvalues.includes(index + invalidValueCounter)) {
+                            invalidValueCounter++;
+                        }
+                        let sqrt = Math.sqrt(value)
+                        $("input[name='unc[]']").eq(index + invalidValueCounter).val(sqrt);
+
+                        return sqrt;
+                    })
                 } else {
                     uncAr = $("input[name='unc[]']").map(function () { return parseFloat($(this).val()); }).get().filter((unc, index) => !invalidvalues.includes(index));
                 }
