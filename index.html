@@ -82,6 +82,8 @@
                         id="addsample-btn">+</button>
                     <button type="button" class="btn btn-danger btn-circle" style="border-radius:40%"
                         id="removesample-btn">-</button>
+					<button type="button" class="btn btn-warning btn-circle" style="border-radius:40%"
+                        id="resetsample-btn">X</button>
                 </div>
                 <div class="form-group col">
                     <label for="Values" data-translate="Values">Values</label>
@@ -107,6 +109,9 @@
                 </div>
                 <div class="offset-1">
                     <input type="reset" id="reset-btn" value="Reset" class="btn btn-danger" data-translate="Reset">
+                </div>
+				<div class="offset-1">
+                    <input type="reset" id="back-btn" value="Back" class="btn btn-warning" data-translate="Back">
                 </div>
             </div>
             <div class="col-12 form-group" id="result-tab" style="display:none">
@@ -227,8 +232,19 @@
                 $("input[name='val[]']").last().remove();
                 $("input[name='unc[]']").last().remove();
             })
+			
+			$('#resetsample-btn').on('click', function () {
+                while ($("input[name='val[]']").length > 1) {
+                    $("input[name='val[]']").last().remove();
+					$("input[name='unc[]']").last().remove();
+                }
+            })
 
             $('#reset-btn').on('click', function () {
+                $('#result-tab').hide();
+            })
+			
+			$('#back-btn').on('click', function () {
                 $('#result-tab').hide();
                 $('.manualinput').hide();
                 $('.spectroscopicinput').hide();
